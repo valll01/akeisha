@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akeisha Lorraine</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f3eee7;  
+            background-image: radial-gradient(circle at 30% 40%, rgba(200, 190, 175, 0.15) 0%, transparent 30%),
+                              repeating-linear-gradient(45deg, rgba(210, 195, 175, 0.03) 0px, rgba(210, 195, 175, 0.03) 2px, transparent 2px, transparent 6px);
+            font-family: 'Cormorant Garamond', 'Times New Roman', 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 24px;
+            color: #2f2a24;        
+        }
+
+        .museum-frame {
+            max-width: 860px;
+            width: 100%;
+            background: #faf8f2;      /* warm off-white, linen */
+            padding: 2.8rem 2.8rem 2.4rem 2.8rem;
+            box-shadow: 
+                0 20px 35px -8px rgba(55, 45, 35, 0.25),
+                inset 0 0 0 1px #e8ddcf,
+                inset 0 0 0 2px #fffdf9;
+            border: 1px solid #bcae9b;
+            outline: 12px solid #f1ebe4;    /* mat effect */
+            outline-offset: 6px;
+            transition: outline 0.2s ease;
+        }
+
+        h1, h2 {
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: #4f4133;
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            border-bottom: 3px double #b09a82;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+        }
+
+        .exhibit-tag {
+            font-size: 1.15rem;
+            background: #dacfbf;
+            color: #2c241c;
+            padding: 0.2rem 1.6rem;
+            border-radius: 40px;
+            font-style: italic;
+            letter-spacing: 0.5px;
+            border: 1px solid #b1a087;
+            box-shadow: inset 0 1px 4px #fffcf5;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin: 2.2rem 0 1.2rem 0;
+            border-left: 14px solid #ad9f8d;
+            padding-left: 1.2rem;
+            font-weight: 430;
+            background: linear-gradient(to right, #f5efe8, transparent);
+        }
+
+        p {
+            background: #f2ebe1;
+            padding: 1.5rem 2rem;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #ccbba8;
+            box-shadow: inset 0 0 0 2px #fdf9f2, 0 6px 12px -8px #8f7f6b;
+            font-family: 'Cormorant', 'Georgia', serif;
+            border-radius: 4px 20px 20px 4px;  /* subtle reference to old paper */
+        }
+
+        b, strong { 
+            color: #4d3624; 
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        i, em { 
+            background: #e7daca; 
+            padding: 0.2rem 0.7rem;
+            margin: 0 0.1rem;
+            border-radius: 2px 12px 12px 2px;
+            font-style: italic;
+            border: 1px solid #b9a58f;
+            white-space: nowrap;
+        }
+
+        /* image as artwork – with frame */
+        .artwork {
+            margin: 2.4rem 0;
+            text-align: center;
+            background: #e3d9cd;
+            padding: 1.2rem 1.2rem 0.8rem 1.2rem;
+            border: 1px solid #b8a68f;
+            box-shadow: 8px 10px 18px -10px #5a4c3d;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 10px solid #e4d7c4;
+            border-image: repeating-linear-gradient(45deg, #cfbc9f, #cfbc9f 8px, #b8a181 8px, #b8a181 16px) 30;
+            outline: 2px solid #8b795e;
+            outline-offset: 4px;
+            background: #a18e75;
+        }
+
+        /* lists as accession cards */
+        ul {
+            background: #efe7dc;
+            padding: 1.6rem 1.8rem 1.6rem 3.5rem;
+            font-size: 1.25rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #a9927b;
+            border-bottom: 1px solid #cfbeab;
+            box-shadow: inset -2px -2px 8px #fffcf6, 3px 5px 12px -6px #6a5d4e;
+            list-style-position: outside;
+        }
+
+        li {
+            margin: 0.6rem 0;
+            padding-left: 0.4rem;
+            border-bottom: 1px dashed #cfbfad;
+        }
+        li:last-child { border-bottom: none; }
+
+
+        .media-gallery {
+            background: #e5d9cb;
+            padding: 2.2rem 2rem;
+            margin: 2.5rem 0 1.5rem;
+            border: 1px solid #b7a187;
+            box-shadow: inset 0 0 0 2px #f7f0e6, 6px 8px 10px -12px #2b221b;
+        }
+
+        video {
+            width: 100%;
+            max-height: 300px;
+            background: #2b221b;
+            border: 14px solid #cabdaa;
+            border-image: repeating-linear-gradient(45deg, #cbb69b, #cbb69b 12px, #aa947b 12px, #aa947b 24px) 20;
+            outline: 2px solid #7e6d59;
+            outline-offset: 6px;
+            margin: 0.5rem 0 0.5rem 0;
+        }
+
+       
+        .curator-desk {
+            background: #e0d3c1;
+            border-radius: 0px;
+            padding: 1.6rem 2.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.2rem;
+            margin: 2.4rem 0 1.2rem;
+            border: 1px solid #b6a185;
+            border-top: 4px solid #968063;
+            box-shadow: inset 0 1px 5px #fff7e6;
+        }
+
+        .archive-email {
+            background: #fcf7ee;
+            padding: 0.5rem 2rem;
+            font-size: 1.3rem;
+            border: 2px solid #8d755a;
+            font-family: 'Courier New', monospace;
+            letter-spacing: -0.5px;
+        }
+        .archive-email a {
+            text-decoration: none;
+            color: #3d2f20;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .archive-email a:hover {
+            background: #b7a58b;
+            color: #1e150f;
+        }
+        .note-museum {
+            background: #fff5e6;
+            padding: 0.4rem 1.8rem;
+            border-radius: 0px;
+            border: 2px dotted #8e7a63;
+            font-size: 1.1rem;
+        }
+
+
+        .credit-line {
+            margin-top: 2.5rem;
+            font-size: 1rem;
+            text-align: right;
+            border-top: 2px double #cbb89f;
+            padding-top: 1.4rem;
+            font-variant: small-caps;
+            letter-spacing: 1.5px;
+        }
+        .credit-line span {
+            background: #dccfc1;
+            padding: 0.2rem 2rem;
+            border: 1px solid #aa947b;
+            font-size: 1.1rem;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+        }
+
+
+        .clean-p {
+            background: none;
+            border: none;
+            box-shadow: none;
+            padding: 0.2rem;
+            font-style: italic;
+        }
+        .museum-label {
+            font-size: 1rem;
+            text-align: center;
+            color: #4a3f33;
+            margin-top: 0.5rem;
+        }
+
+
+        .museum-frame::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.06"/></svg>');
+            pointer-events: none;
+            opacity: 0.18;
+            mix-blend-mode: multiply;
+        }
+        .museum-frame { position: relative; }
+    </style>
+</head>
+<body>
+    <div class="museum-frame">
+        <h1>
+            Akeisha Lorraine
+            <span class="exhibit-tag">MY FIRST PERSONAL WEBSITE</span>
+        </h1>
+
+
+        <h2>⟡ provenance / about</h2>
+
+        <p>
+            <b>Akeisha Lorraine Canindo</b> — <i>BSIT student</i>, 
+currently exploring the world of technology and programming.  
+This <b>first HTML page</b> is kept as a <i>small artifact of early web-craft</i>, 
+marked by curiosity and quiet growth.
+
+        </p>
+
+     
+        <div class="artwork">
+            <img 
+                src="loreyn.png" 
+                alt="blue themed workspace with notebook and ocean view – archival print"
+                title="‘calm blue corner’ · found photograph"
+            >
+            <div class="museum-label">fig. 1 — "blue study with notebook" (digital pigment print)</div>
+        </div>
+
+      
+         
+        <h2>⟡ three favorite things</h2>
+        <ul>
+            <li>worn-out headphones (left side louder than the right)</li>
+            <li>books that smell like old paper and time</li>
+            <li>things that look ordinary but aren’t to me</li>
+        </ul>
+
+
+   <div class="artwork">
+            <img 
+                src="ichikoo.png" 
+                alt="blue themed workspace with notebook and ocean view – archival print"
+                title="‘calm blue corner’ · found photograph"
+            >
+            <div class="museum-label">
+                 <audio controls style="width: 90%;">
+        <source src="ichiko.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+            </div>
+        </div>
+
+        <!-- contact area as curator’s desk — blue -->
+        <div class="curator-desk">
+            <div class="archive-email">
+                <a href="mailto:lina.blue@hello.page?subject=Hey%20from%20blue%20museum">
+                    📬 lina.blue@hello.page
+                </a>
+            </div>
+            <div class="note-museum">
+                curator responds within a blue moon ✦
+            </div>
+        </div>
+</body>
+</html>
