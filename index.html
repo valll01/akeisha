@@ -2,23 +2,321 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iloveyou</title>
     <link href="styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="https://images.stockcake.com/public/3/6/1/361aeb8e-4dc3-43f4-9b38-4b30efbd589f_large/galactic-heart-formation-stockcake.jpg">
+=======
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Akeisha Lorraine · mobile view</title>
+    <style>
+        /* === reset & base — preserve warmth, improve small screens === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f3eee7;  
+            background-image: radial-gradient(circle at 30% 40%, rgba(200, 190, 175, 0.15) 0%, transparent 30%),
+                              repeating-linear-gradient(45deg, rgba(210, 195, 175, 0.03) 0px, rgba(210, 195, 175, 0.03) 2px, transparent 2px, transparent 6px);
+            font-family: 'Cormorant Garamond', 'Times New Roman', 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 12px 10px;          /* tighter padding for mobile */
+            color: #2f2a24;
+            line-height: 1.4;
+        }
+
+        /* === frame becomes a flexible container === */
+        .museum-frame {
+            max-width: 520px;            /* comfortable reading width on phone */
+            width: 100%;
+            background: #faf8f2;
+            padding: 1.5rem 1.2rem 1.8rem 1.2rem;  /* reduced from huge 2.8rem */
+            box-shadow: 
+                0 20px 35px -8px rgba(55, 45, 35, 0.25),
+                inset 0 0 0 1px #e8ddcf,
+                inset 0 0 0 2px #fffdf9;
+            border: 1px solid #bcae9b;
+            outline: 6px solid #f1ebe4;    /* thinner outline for mobile (was 12px) */
+            outline-offset: 3px;
+            transition: outline 0.2s ease;
+            position: relative;
+        }
+
+        .museum-frame::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.06"/></svg>');
+            pointer-events: none;
+            opacity: 0.15;
+            mix-blend-mode: multiply;
+        }
+
+        h1, h2 {
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: #4f4133;
+        }
+
+        /* === responsive title: stack gracefully === */
+        h1 {
+            font-size: 2rem;              /* scaled down for mobile */
+            border-bottom: 3px double #b09a82;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.2rem;
+            font-weight: 500;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.8rem;
+            word-break: break-word;
+        }
+
+        .exhibit-tag {
+            font-size: 0.9rem;
+            background: #dacfbf;
+            color: #2c241c;
+            padding: 0.15rem 1rem;
+            border-radius: 40px;
+            font-style: italic;
+            letter-spacing: 0.3px;
+            border: 1px solid #b1a087;
+            box-shadow: inset 0 1px 4px #fffcf5;
+            white-space: nowrap;
+        }
+
+        /* for narrow screens, allow tag to shrink a bit */
+        @media (max-width: 380px) {
+            .exhibit-tag {
+                white-space: normal;
+                font-size: 0.8rem;
+                padding: 0.2rem 0.8rem;
+            }
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            margin: 1.4rem 0 0.8rem 0;     /* reduced spacing */
+            border-left: 10px solid #ad9f8d;
+            padding-left: 0.9rem;
+            font-weight: 430;
+            background: linear-gradient(to right, #f5efe8, transparent);
+            word-break: break-word;
+        }
+
+        /* === paragraph becomes less bulky on mobile === */
+        p {
+            background: #f2ebe1;
+            padding: 1rem 1.2rem;           /* smaller padding */
+            font-size: 1.2rem;
+            line-height: 1.5;
+            margin: 1.2rem 0 1.2rem 0;
+            border: 1px solid #ccbba8;
+            box-shadow: inset 0 0 0 2px #fdf9f2, 0 6px 12px -8px #8f7f6b;
+            font-family: 'Cormorant', 'Georgia', serif;
+            border-radius: 4px 16px 16px 4px;
+            word-break: break-word;
+        }
+
+        b, strong { 
+            color: #4d3624; 
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+
+        i, em { 
+            background: #e7daca; 
+            padding: 0.1rem 0.5rem;
+            margin: 0 0.1rem;
+            border-radius: 2px 10px 10px 2px;
+            font-style: italic;
+            border: 1px solid #b9a58f;
+            white-space: nowrap;             /* keep inline but avoid break inside small */
+        }
+
+        /* === framed images & audio: fit like a glove === */
+        .artwork {
+            margin: 1.5rem 0;
+            text-align: center;
+            background: #e3d9cd;
+            padding: 0.8rem 0.8rem 0.5rem 0.8rem;
+            border: 1px solid #b8a68f;
+            box-shadow: 8px 10px 18px -10px #5a4c3d;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 6px solid #e4d7c4;          /* thinner border for mobile */
+            border-image: repeating-linear-gradient(45deg, #cfbc9f, #cfbc9f 8px, #b8a181 8px, #b8a181 16px) 30;
+            outline: 2px solid #8b795e;
+            outline-offset: 3px;                 /* reduced offset */
+            background: #a18e75;
+        }
+
+        /* museum label under image */
+        .museum-label {
+            font-size: 0.85rem;
+            text-align: center;
+            color: #4a3f33;
+            margin-top: 0.4rem;
+            font-style: italic;
+        }
+
+        /* audio player fills width, looks intentional */
+        .artwork audio {
+            width: 100%;
+            max-width: 100%;
+            height: 42px;
+            margin: 0.5rem 0 0.2rem 0;
+            border-radius: 0px;
+        }
+
+        /* === list compact but retains character === */
+        ul {
+            background: #efe7dc;
+            padding: 1rem 1rem 1rem 2.2rem;      /* tighter padding */
+            font-size: 1.1rem;
+            margin: 1.2rem 0;
+            border-left: 6px solid #a9927b;       /* thinner left border */
+            border-bottom: 1px solid #cfbeab;
+            box-shadow: inset -2px -2px 8px #fffcf6, 3px 5px 12px -6px #6a5d4e;
+            list-style-position: inside;
+            word-break: break-word;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            padding-left: 0.2rem;
+            border-bottom: 1px dashed #cfbfad;
+        }
+        li:last-child { border-bottom: none; }
+
+        /* === curator desk — flexible column on small screens === */
+        .curator-desk {
+            background: #e0d3c1;
+            border-radius: 0px;
+            padding: 1.2rem 1.2rem;
+            display: flex;
+            flex-direction: column;          /* stack vertically on phone */
+            align-items: stretch;
+            gap: 0.8rem;
+            margin: 2rem 0 1rem 0;
+            border: 1px solid #b6a185;
+            border-top: 4px solid #968063;
+            box-shadow: inset 0 1px 5px #fff7e6;
+        }
+
+        .archive-email {
+            background: #fcf7ee;
+            padding: 0.5rem 1rem;
+            font-size: 1.1rem;
+            border: 2px solid #8d755a;
+            font-family: 'Courier New', monospace;
+            letter-spacing: -0.5px;
+            text-align: center;
+            overflow-wrap: break-word;
+            word-break: break-all;            /* ensures long email wraps */
+        }
+
+        .archive-email a {
+            text-decoration: none;
+            color: #3d2f20;
+            display: inline-block;            /* simpler touch */
+            width: 100%;
+            padding: 0.2rem 0;
+        }
+
+        .archive-email a:hover {
+            background: #b7a58b;
+            color: #1e150f;
+        }
+
+        .note-museum {
+            background: #fff5e6;
+            padding: 0.5rem 1.2rem;
+            border: 2px dotted #8e7a63;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+
+
+        /* remove extra pseudo styles */
+        .clean-p {
+            background: none;
+            border: none;
+            box-shadow: none;
+            padding: 0.2rem;
+        }
+
+        /* small fine-tune for very tiny screens */
+        @media (max-width: 360px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            p { font-size: 1.1rem; }
+            .museum-frame { padding: 1rem 0.9rem; }
+        }
+
+        /* keep italics from overflowing */
+        i, em { word-break: break-word; white-space: normal; }
+
+        /* audio container label */
+        .artwork .museum-label audio {
+            display: block;
+        }
+
+        /* accessibility / better touch target */
+        a, .archive-email a {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+>>>>>>> a596c8af6ae3a148759f9e44b18548c97de4f667
 </head>
 <body>
 
+<<<<<<< HEAD
      <!-- Modal for headphone recommendation -->
     <div class="modal-overlay" id="modal">
         <div class="modal-content">
             <div class="headphone-icon">🎧</div>
             <h2>Suot mo muna headphones modali</h2>
             <button class="start-button" id="startButton">naka suot na</button>
+=======
+        <h2>⟡ provenance / about</h2>
+
+        <p>
+            <b>Akeisha Lorraine Canindo</b> — <i>BSIT student</i>, 
+            currently exploring the world of technology and programming.  
+            This <b>first HTML page</b> is kept as a small artifact of early web-craft, 
+            marked by curiosity and quiet growth.
+        </p>
+
+        <!-- image one: mobile ready, no overflow -->
+        <div class="artwork">
+            <img 
+                src="loreyn.png" 
+                alt="blue themed workspace with notebook and ocean view – archival print"
+                title="‘calm blue corner’ · found photograph"
+                loading="lazy"
+            >
+            <div class="museum-label">fig. 1 — meet my biscoff</div>
+>>>>>>> a596c8af6ae3a148759f9e44b18548c97de4f667
         </div>
     </div>
 
+<<<<<<< HEAD
        <audio id="backgroundMusic" loop>
         <source src="assets/Munimuni - Sa'yo (Lyric Video).mp3" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -83,6 +381,29 @@
                     sana soon marealize mo mahal, kaya ko gawin lahat para sayo, mag papaka better ako ng mag papaka better para sayo mahal ko, sobrang sobrang gusto na kita mayakap, ma kiss, makasamaaaa sa lahat ng mga pangarap natin noon, waaaaaaaaaaaaaaaaaa
                     happy happy birthday mahal ko, i love you so much my lorraine !!
                 </p>
+=======
+        <h2>⟡ three favorite things</h2>
+        <ul>
+            <li>worn-out headphones (left side louder than the right)</li>
+            <li>books that smell like old paper and time</li>
+            <li>things that look ordinary but aren’t to me</li>
+        </ul>
+
+        <!-- second artwork containing audio — now fits perfectly -->
+        <div class="artwork">
+            <img 
+                src="ichikoo.png" 
+                alt="blue themed workspace with notebook and ocean view – archival print"
+                title="‘calm blue corner’ · found photograph"
+                loading="lazy"
+            >
+            <div class="museum-label">
+                <audio controls style="width: 100%; display: block;">
+                    <source src="ichiko.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <span style="display: block; margin-top: 6px; font-size: 0.8rem;">⚬ sound fragment ⚬</span>
+>>>>>>> a596c8af6ae3a148759f9e44b18548c97de4f667
             </div>
             
             <div class="about-image">
@@ -109,6 +430,7 @@
             <div class="game-feedback" id="game-feedback"></div>
         </div>
 
+<<<<<<< HEAD
         
     </section>
 
@@ -124,6 +446,14 @@
         <div class="chat-header">
             <div class="back-button">
                 <i class="fas fa-arrow-left"></i>
+=======
+        <!-- contact area as curator’s desk — mobile friendly stack -->
+        <div class="curator-desk">
+            <div class="archive-email">
+                <a href="https://mail.google.com/mail/u/0/#inbox">
+                    akeishalorraine1@gmail.com
+                </a>
+>>>>>>> a596c8af6ae3a148759f9e44b18548c97de4f667
             </div>
             <div class="user-info">
                 <div class="user-avatar"></div>
