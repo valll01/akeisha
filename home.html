@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/eurostile');
+    @import url('https://fonts.cdnfonts.com/css/gabriel-2');
+    @import url('https://fonts.cdnfonts.com/css/handwriting');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f6f2ea;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Handwriting', sans-serif;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23b33f3f" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>'), auto;
+    }
+
+    .notebook-container {
+      max-width: 800px;
+      width: 100%;
+      position: relative;
+    }
+
+    .letter {
+      font-family: 'Handwriting', sans-serif;
+      max-width: 800px;
+      background: #fffaf3;
+      padding: 40px 35px;
+      border-radius: 0 18px 18px 0;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+      animation: fadeIn 1.5s ease;
+      display: none; 
+      position: relative;
+      border-left: 12px solid #b33f3f;
+    }
+
+
+    .letter::before {
+      content: "";
+      position: absolute;
+      left: -12px;
+      top: 0;
+      height: 100%;
+      width: 12px;
+      background: 
+          repeating-linear-gradient(
+              to bottom,
+              #b33f3f,
+              #b33f3f 5px,
+              #fffaf3 5px,
+              #fffaf3 10px
+          );
+      border-radius: 4px 0 0 4px;
+    }
+
+  
+    .letter::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 20px;
+      right: 20px;
+      bottom: 0;
+      background: 
+          repeating-linear-gradient(
+              to bottom,
+              transparent,
+              transparent 23px,
+              rgba(0,0,0,0.05) 23px,
+              rgba(0,0,0,0.05) 24px
+          );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #b33f3f;
+      margin-bottom: 25px;
+      font-family: 'Gabriel', sans-serif;
+      font-weight: bold;
+      position: relative;
+      z-index: 1;
+    }
+
+    p {
+      font-family: 'Handwriting', sans-serif;
+      font-weight: 500;
+      opacity: 0;
+      margin-bottom: 22px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      font-size: 1.05rem;
+      animation: reveal 0.8s forwards ease-out;
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .ink-blot {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, rgba(179,63,63,0.1) 0%, rgba(179,63,63,0) 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .ink-blot:nth-child(1) {
+      top: 15%;
+      left: 10%;
+      transform: rotate(15deg);
+    }
+
+    .ink-blot:nth-child(2) {
+      bottom: 20%;
+      right: 8%;
+      transform: rotate(-10deg);
+    }
+
+
+    .music-player {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #fffaf3;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      display: none;
+      align-items: center;
+      gap: 10px;
+      z-index: 100;
+      border-left: 4px solid #b33f3f;
+    }
+
+    .music-player button {
+      background: #b33f3f;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-family: 'Handwriting', sans-serif;
+    }
+
+    .music-player button:hover {
+      background: #9a3434;
+    }
+
+    .song-info {
+      font-size: 0.9rem;
+      color: #b33f3f;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background-color: #fffaf3;
+      padding: 40px;
+      border-radius: 18px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+      border-left: 8px solid #b33f3f;
+    }
+
+    .modal h2 {
+      color: #b33f3f;
+      margin-bottom: 20px;
+      font-family: "Playfair Display", serif;
+    }
+
+    .modal p {
+      margin-bottom: 30px;
+      opacity: 1;
+      animation: none;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .modal-btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Handwriting', sans-serif;
+    }
+
+    .yes-btn {
+      background-color: #b33f3f;
+      color: white;
+    }
+
+    .no-btn {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    .modal-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .yes-btn:hover {
+      background-color: #9a3434;
+    }
+
+    .no-btn:hover {
+      background-color: #e0e0e0;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+
+<div class="modal" id="musicModal">
+  <div class="modal-content">
+    <h2>Read with Music?</h2>
+    <p>Would you like to read this letter with background music? If yes, a song will play while you're reading.</p>
+    <div class="modal-buttons">
+      <button class="modal-btn yes-btn" id="yesBtn">Yes, with music</button>
+      <button class="modal-btn no-btn" id="noBtn">No, just the letter</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="music-player" id="musicPlayer">
+  <button id="pauseBtn">Pause</button>
+  <span class="song-info" id="songInfo">Now Playing: Song 1</span>
+</div>
+
+
+<div class="notebook-container">
+  <div class="letter" id="letter">
+    <div class="ink-blot"></div>
+    <div class="ink-blot"></div>
+    <h1>Dear Lorraine</h1>
+
+    <p>hi ! (if mababasa mo man to, thankyouuu)</p>
+
+    <p>november 16 was the time when we confessed our feelings to each other, then the rest is history...</p>
+
+    <p>i miss you, i love you, more than any words and paragraphs can express, more than any tears that i can show,
+ang galing ng love no? it makes u feel dead everyday, laging may kulang, parang buhay pero patay, i miss you.</p>
+
+    <p>every night kahit naguusap tayo namimiss kita, but today, u told me to give u peace ofcourse ibibigay ko na yung
+gusto mong peace today !! :) , 4years na rin ee, i can't run from myself anymore, its the ache that doesn't stop,
+the one that makes my chest feel likes it's craving in, i miss  you in ways that feel endless, in the silence between our favorite songs,
+in the pauses between breaths, in every single moments that reminds me i'm walking through this life without you.</p>
+
+    <p>i know its my fault, di mo rin naman gusto mangyari or mag end up tayo sa ganto, its just hurts that the person who once
+felt like home is now a stranger that i can't talked about, about my happenings, my day, my bad day, and even the good ones,
+and the cruelest part is i still care, i care so much it destroys me,</p>
+
+    <p>the truth is, di ko alam kung pano titigil, i don't know how to forget, i don't know how to live with this gaping hole
+inside me every  night i find myself breaking again, and again, and again. missing you is all i have left, and i'd rather bleed from
+it everyday than live a life where you never existed at all,</p>
+
+    <p>i saw you when no one else did, i saw you protected yourself, kung pano mo binago yung sarili mo, kung ano ka noon at kung ano ka ngayon,</p>
+
+    <p>i never wanted to change you, i just wanted us to grow together, to face our flaws, our differences, and build something real for the second time,
+everytime we fought, i wasn't trying to win, i was trying to understand you and explain my side, na bigyan ka ng assurance,
+to make sure we didn't fall apart over something we could fix.</p>
+
+    <p>i asked questions, i spoke up, i fought not to win, but because i didn't want to lose you.</p>
+
+    <p>but have you ever thought about how tired i was too? from holding both of us when you stopped reaching back?
+i never stopped trying love, because to me, you were worth it, every ache, every tear, they all felt worth it if it meant i could still have you in my life.
+nasasaktan ako tuwing nasasaktan ka, tuwing naalala mo yung nakaraan na nagawa ko, na nagsusuffer ka tuwing naalala mo yunn,
+ayaw ko na mafeel mo ulit yonn, wala naman akong ibang gustong gawin kundi magbago for you:((( na kahit maalala mo yon, sasamahan kita para
+tanggalin yung mga sakit na nafefeel mo, hshsha gusto lang naman kita mahalin hanggang dulo kaso
+wala ee, hahaha
+wala na akong magagawaaa waa
+waa if hindi lang talaga ako naging gago no?</p>
+
+    <p>sobrang sama ko sayo
+maybe you weren't ready of the kind of love that doesn't quit
+but one day, when things are quieter in your heart, i hope you'll realize that all i ever wanted was
+for you to meet me halfway</p>
+
+    <p>i love you, i showed the world for you
+you said there won't be another person
+but i never wanted it to be another</p>
+
+    <p>i never wanted to just be a random person in your story.
+di kita minahal para lang maging memory, or one of many, i loved you because i wanted to be your person, your only, your world, your home,
+your safe place.</p>
+
+    <p>hmm, God.</p>
+
+    <p>all of those years were priceless, those memories we shared, those plans we've made, they are priceless.
+never ko pinagsisisihan na nakilala kita, pero pinagsisisihan ko kasi nakilala mo ko hahaha</p>
+
+    <p>fucking val.</p>
+
+    <p>i want you to be the happiest person in the world because you deserve it, i want you to have the whole world for yourself because you deserve all of it,
+you deserve all the good things in the world, you deserve the world my love, </p>
+
+    <p>ill be forever sorry sa ginawa ko, kasi hanggang ngayon nag susuffer ka pa rin sa past ko haha, but all i ever wanted lang din naman to make it right noon ee,
+to fix it all, to make things work againn, pero walaa ee grabe yung trauma na binigay ko sayo, mas nangibabaw sa mga nagawa ko na pagbabago,</p>
+
+    <p>tanggap ko na mahal, tanggap ko na na di mo ako mahal, tanggap ko na na hanggang dito na lang, tanggap ko na, tanggap ko na na ayaw mo na,
+tanggap ko na hindi na ikaw si lorraine na na-meet ko 4years ago, pero ako pa rin to, si val</p>
+
+    <p>val na nakilala mo 4years ago, val na naging crush ka, val na mahiyain sayo noon, val na love na love na love ka.
+sobrang naging saya ko hindi maexplain ng words kung gaano ako kasaya kasi nakilala kita, sobrang nabuo mo ko,
+you saved me from my fucked up life, waa di maexplain ng words kung gaano kita ka love e, </p>
+
+    <p>i'm not sending you this para magreply ka ulit ha?, i just want you to know that i still remember our anniversarry date,
+please you really don't have to reply to this kasi aalis na ako, yung letter pala susundin kitaa, di ko na sya ipapadala,
+di ko na rin imemeet si kuya m for your peace !!,</p>
+
+    <p>now i understand and i realize it all, na kahit greatest love, na kahit sobrang mahal, na kahit ikamamatay mo yung pag iwan sayo, in the end wala kang magagawa if they don't
+love you anymore, it sucks, but its lifee hahaha, i gotta accept it na mas masaya ka pag wala ako, di ka nag susuffer pag wala ako,
+i'm sorry mahal, i just wanted to feel loved kasii tulad nung pinafeel mo noon sakin, never ko naexperience and ayaw ko na rin ma experience.</p>
+
+    <p>ayoko naman na pahabain to, or i bring back yung memories dati kasi ayaw mo noon,
+i'll promise that i'll give u the peace u wanted mahal.</p>
+
+    <p>there won'be hate from me, just love, and a bit of sadness for what we could've been, if you ever thing about me, i hope it 
+reminds you good na, hindi yung trauma na binigay ko sayo ha? kasi good boy na ako u, almost 3 years na q nagpapakabaliw sau,
+i hope it reminds you that i meant everything i said, that i loved every part of you, even the ones that made you bad back then, i love your flaws, 
+maganda ka palagi!!! if u ever feel insecure, PLEASE MAGANDA KA OK? dami ko pang gustong sabihin at ikwento sayoo, kalimutan mo na ako ha?</p>
+
+    <p>so if you  ever miss me, if you really miss mee, i hope you remember that i never stopped choosing you, even its so dark, even it's tearing us apart,
+napagod ako, pero di ako napagod na piliin at mahalin ka, mahal.</p>
+
+    <p>thankyou for all those wonderful 4 years OwO,UwU,bbq,baby,mhie,love,my astronaut, mahal.</p>
+
+    <p>i'll always pray for your happiness, and peace.</p>
+
+    <p>i love you mahal.</p>
+
+    <p>muahhh:)</p>
+    
+    <p>Sincerely yours, <br>Val.</p>
+  </div>
+</div>
+
+<script>
+
+  const modal = document.getElementById('musicModal');
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const letter = document.getElementById('letter');
+  const musicPlayer = document.getElementById('musicPlayer');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const songInfo = document.getElementById('songInfo');
+
+  const playlist = [
+    { name: 'Remember Me', file: 'rememberme.mp3' },
+    { name: 'Remember You', file: 'rememberyou.mp3' },
+    { name: 'Song 3', file: 'habangbuhay.mp3' },
+    { name: 'Song 4', file: 'panata.mp3' },
+    { name: 'Song 5', file: 'sparks.mp3' }
+  ];
+  
+  let currentSongIndex = 0;
+  let currentAudio = null;
+  let isPlaying = false;
+  
+
+  window.addEventListener('load', () => {
+    modal.style.display = 'flex';
+  });
+  
+
+  yesBtn.addEventListener('click', () => {
+  
+    modal.style.display = 'none';
+   
+    letter.style.display = 'block';
+    
+  
+    musicPlayer.style.display = 'flex';
+    
+  
+    playNextSong();
+    
+
+    startParagraphAnimation();
+  });
+
+  noBtn.addEventListener('click', () => {
+
+    modal.style.display = 'none';
+ 
+    letter.style.display = 'block';
+    
+ 
+    startParagraphAnimation();
+  });
+  
+
+  pauseBtn.addEventListener('click', () => {
+    if (isPlaying && currentAudio) {
+      currentAudio.pause();
+      pauseBtn.textContent = 'Play';
+      isPlaying = false;
+    } else if (currentAudio) {
+      currentAudio.play();
+      pauseBtn.textContent = 'Pause';
+      isPlaying = true;
+    }
+  });
+  
+
+  function playNextSong() {
+    if (currentSongIndex < playlist.length) {
+      currentAudio = new Audio(playlist[currentSongIndex].file);
+      songInfo.textContent = `Now Playing: ${playlist[currentSongIndex].name}`;
+      
+      currentAudio.addEventListener('ended', () => {
+        currentSongIndex++;
+        playNextSong();
+      });
+      
+      currentAudio.play().then(() => {
+        isPlaying = true;
+        pauseBtn.textContent = 'Pause';
+      }).catch(e => {
+        console.log("Autoplay prevented for song " + (currentSongIndex + 1));
+ 
+        currentSongIndex++;
+        playNextSong();
+      });
+    } else {
+     
+      musicPlayer.style.display = 'none';
+    }
+  }
+  
+
+  function startParagraphAnimation() {
+    const paragraphs = document.querySelectorAll("p");
+    paragraphs.forEach((p, i) => {
+      p.style.animationDelay = `${i * 0.35}s`;
+    });
+  }
+</script>
+
+</body>
+</html>
